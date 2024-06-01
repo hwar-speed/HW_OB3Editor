@@ -687,6 +687,23 @@ again:;
 	system("pause");
 }
 
+void RemoveAllObjects()
+{
+	PrintLowInfo();
+
+again:;
+
+	for (auto obj : loadedObjects) {
+		delete obj;
+	}
+	loadedObjects.clear();
+
+	std::cout << "All objects deleted!\n";
+	system("pause");
+}
+
+
+
 float Magnitude(VertexUnPad foo)
 {
 	return sqrt(foo.x * foo.x + foo.y * foo.y + foo.z * foo.z);
@@ -1198,8 +1215,9 @@ int main(int argc, char* argv[])
 				<< "7. Save file\n"
 				<< "8. Use meters instead of game units ["<< MetresOn() <<"]\n"
 				<< "9. Randomizer\n"
-				<< "10. Credits\n"
-				<< "11. Quit\n";
+				<< "10. Remove all objects (create shell .ob3 file)\n"
+				<< "11. Credits\n"
+				<< "12. Quit\n";
 
 			int choice = -1;
 			cin >> choice;
@@ -1226,6 +1244,8 @@ int main(int argc, char* argv[])
 			else if (choice == 9)
 				Ranzomizer();
 			else if (choice == 10)
+				RemoveAllObjects();
+			else if (choice == 11)
 				PrintCredits();
 			else
 				editing = false;
